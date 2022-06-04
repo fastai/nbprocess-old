@@ -288,8 +288,8 @@ def nbprocess_quarto(
     
     if (tmp_doc_path/'README.md').exists():
         (cfg_path/'README.md').unlink(missing_ok=True)
-        shutil.move(tmp_doc_path/'README.md', cfg_path) # README.md is temporarily in the nbs/docs folder
+        shutil.move((tmp_doc_path/'README.md').as_posix(), cfg_path.as_posix()) # README.md is temporarily in the nbs/docs folder
     
     if tmp_doc_path.parent != cfg_path: # move docs folder to root of repo if it doesn't exist there
         shutil.rmtree(doc_path, ignore_errors=True)
-        shutil.move(tmp_doc_path, cfg_path)
+        shutil.move(tmp_doc_path.as_posix(), cfg_path.as_posix())
