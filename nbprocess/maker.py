@@ -170,11 +170,11 @@ def write(self:ModuleMaker, cells, all_cells=None, lib_name=None, offset=0, auto
     try: last_future = max(i for i,tree in enumerate(trees) if tree and any(
          isinstance(t,ast.ImportFrom) and t.module=='__future__' for t in tree))+1
     except ValueError: last_future=0
-    BaseMaker.write(self, cells[:last_future], 0, "w", endline=False)
+    super(ModuleMaker, self).write(cells[:last_future], 0, "w", endline=False)
     tw = TextWrapper(width=120, initial_indent='', subsequent_indent=' '*11, break_long_words=False)
     all_str = '\n'.join(tw.wrap(str(_all)))
     with self.fname.open('a') as f: f.write(f"\n\n# %% auto 0\n__all__ = {all_str}")
-    BaseMaker.write(self, cells[last_future:], 1, "a", False)
+    super(ModuleMaker, self).write(cells[last_future:], 1, "a", False)
 
 # %% ../nbs/02_maker.ipynb 34
 @patch
