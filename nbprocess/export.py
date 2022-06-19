@@ -42,7 +42,7 @@ def black_format(cell, # A cell node
             except: pass
 
 # %% ../nbs/04a_export.ipynb 10
-def create_modules(path, dest, procs=None, debug=False, mod_maker=ModuleMaker):
+def create_modules(path, dest, procs=None, debug=False, mod_maker=LibraryMaker):
     "Create module(s) from notebook"
     exp = ExportModuleProc()
     nb = NBProcessor(path, [exp]+L(procs), debug=debug)
