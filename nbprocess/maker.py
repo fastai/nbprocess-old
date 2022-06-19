@@ -188,12 +188,6 @@ def make(self:LibraryMaker, cells, all_cells=None, lib_name=None):
     tw = TextWrapper(width=120, initial_indent='', subsequent_indent=' '*11, break_long_words=False)
     cells.insert(last_future, make_code_cell(f"__all__ = " + '\n'.join(tw.wrap(str(_all))),0))
     super(LibraryMaker,self).make(cells)
-    
-    # if has_future: self.write_contents(cells[:last_future], autogenerate=True)
-    # tw = TextWrapper(width=120, initial_indent='', subsequent_indent=' '*11, break_long_words=False)
-    # all_str = f"\n\n# %% auto 0\n__all__ = " + '\n'.join(tw.wrap(str(_all)))
-    # self.write_contents(all_str, mode="a" if has_future else "w", autogenerate=not has_future)
-    # self.write_contents(cells[last_future:], 1, "a", endline=True)
 
 # %% ../nbs/02_maker.ipynb 43
 def basic_export_nb2(fname, name, dest=None):
