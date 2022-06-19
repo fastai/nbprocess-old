@@ -162,24 +162,18 @@ def import2relative(cell:NbCell, libname):
     src = update_import(cell.source, cell.parsed_(), libname)
     if src: cell.set_source(src)
 
-# %% ../nbs/02_maker.ipynb 30
-@patch
-def _import2relative(self:LibraryMaker, cells, lib_name=None):
-    "Updates all imports in `cells` to be relative"
-    if lib_name is None: lib_name = get_config().lib_name
-    for cell in cells: cell.import2relative(lib_name)
-
-# %% ../nbs/02_maker.ipynb 32
+# %% ../nbs/02_maker.ipynb 31
 @patch
 def _update_all(self:LibraryMaker, all_cells, alls):
     return pformat(alls + self.make_all(all_cells), width=160)
 
-# %% ../nbs/02_maker.ipynb 33
+# %% ../nbs/02_maker.ipynb 32
 @patch
 def make(self:LibraryMaker, cells, all_cells=None, lib_name=None):
     "Writes module containing `cells` with `__all__` generated from `all_cells`"
     if all_cells is None: all_cells = cells
-    self._import2relative(all_cells, lib_name)
+    if lib_name is None: lib_name = get_config().lib_name
+    for cell in all_cells: cell.import2relative(lib_name)
     if not self.is_new: 
         if all_cells: update_var('__all__', partial(self._update_all, all_cells), fn=self.fname)
         return self._make_exists(cells)
@@ -198,7 +192,7 @@ def make(self:LibraryMaker, cells, all_cells=None, lib_name=None):
     self.write_contents(all_str, mode="a" if has_future else "w", autogenerate=not has_future)
     self.write_contents(cells[last_future:], 1, "a", endline=True)
 
-# %% ../nbs/02_maker.ipynb 42
+# %% ../nbs/02_maker.ipynb 41
 def basic_export_nb2(fname, name, dest=None):
     "A basic exporter to bootstrap nbprocess using `LibraryMaker`"
     if dest is None: dest = get_config().path('lib_path')
