@@ -167,7 +167,7 @@ def import2relative(cell:NbCell, libname):
 def _update_all(self:LibraryMaker, all_cells, alls):
     return pformat(alls + self.make_all(all_cells), width=160)
 
-# %% auto 1
+# %% ../nbs/02_maker.ipynb 33
 @patch
 def make(self:LibraryMaker, cells, all_cells=None, lib_name=None):
     "Writes module containing `cells` with `__all__` generated from `all_cells`"
@@ -189,7 +189,7 @@ def make(self:LibraryMaker, cells, all_cells=None, lib_name=None):
     cells.insert(last_future, make_code_cell(f"__all__ = " + '\n'.join(tw.wrap(str(_all))),0))
     super(LibraryMaker,self).make(cells)
 
-# %% ../nbs/02_maker.ipynb 43
+# %% ../nbs/02_maker.ipynb 42
 def basic_export_nb2(fname, name, dest=None):
     "A basic exporter to bootstrap nbprocess using `LibraryMaker`"
     if dest is None: dest = get_config().path('lib_path')

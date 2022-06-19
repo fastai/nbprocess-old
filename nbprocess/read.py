@@ -102,17 +102,17 @@ def add_init(path):
         subds = (os.listdir(r/d) for d in ds)
         if _has_py(fs) or any(filter(_has_py, subds)) and not (r/_init).exists(): (r/_init).touch()
 
-# %% auto 1
+# %% ../nbs/01_read.ipynb 20
 def write_cells(cells, hdr, file, offset=0):
     "Write `cells` to `file` along with header `hdr` starting at index `offset` (mainly for nbprocess internal use)"
-    _cells = cells.filter(lambda x: x.source.strip())
+    _cells,_all = cells.filter(lambda x: x.source.strip()),False
     for cell in _cells: 
-        if "__all__ = " in cell.source: 
+        if "__all__ = " in cell.source and not _all: 
             file.write(f'\n\n# %% auto {0+offset}\n{cell.source}')
-            offset += 1
+            offset,_all = (offset+1),True
         else: file.write(f'\n\n{hdr} {cell.idx_+offset}\n{cell.source}')
 
-# %% auto 2
+# %% ../nbs/01_read.ipynb 21
 def basic_export_nb(fname, name, dest=None):
     "Basic exporter to bootstrap nbprocess"
     if dest is None: dest = config_key('lib_path')
