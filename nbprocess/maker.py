@@ -190,17 +190,12 @@ def make(self:LibraryMaker, cells, all_cells=None, lib_name=None):
     try: last_future = max(i for i,tree in enumerate(trees) if tree and any(
          isinstance(t,ast.ImportFrom) and t.module=='__future__' for t in tree))+1
     except ValueError: last_future=0
+    has_future = last_future>0
     
+    if has_future: self.write_contents(cells[:last_future], autogenerate=True)
     tw = TextWrapper(width=120, initial_indent='', subsequent_indent=' '*11, break_long_words=False)
     all_str = f"\n\n# %% auto 0\n__all__ = " + '\n'.join(tw.wrap(str(_all)))
-    
-    # if last_future: self.write_contents(cells[:last_future], autogenerate=True)
-    # self.write_contents(all_str, mode="a" if not last_future else "w", autogenerate=last_future>0)
-    # self.write_contents(cells[last_future:], 1, "a", endline=True)
-    self.write_contents(cells[:last_future], autogenerate=True)
-    tw = TextWrapper(width=120, initial_indent='', subsequent_indent=' '*11, break_long_words=False)
-    all_str = f"\n\n# %% auto 0\n__all__ = " + '\n'.join(tw.wrap(str(_all)))
-    self.write_contents(all_str, mode="a")
+    self.write_contents(all_str, mode="a" if has_future else "w", autogenerate=not has_future)
     self.write_contents(cells[last_future:], 1, "a", endline=True)
 
 # %% ../nbs/02_maker.ipynb 42
