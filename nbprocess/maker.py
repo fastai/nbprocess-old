@@ -132,7 +132,7 @@ class LibraryMaker(ModuleMaker):
         if cells is None: return ''
         return retr_exports(cells.map(NbCell.parsed_).concat())
 
-# %% ../nbs/02_maker.ipynb 28
+# %% ../nbs/02_maker.ipynb 27
 def relative_import(name, fname, level=0):
     "Convert a module `name` to a name relative to `fname`"
     assert not level
@@ -143,7 +143,7 @@ def relative_import(name, fname, level=0):
     res = rel.replace(f"..{os.path.sep}", ".")
     return "." + res.replace(os.path.sep, ".")
 
-# %% ../nbs/02_maker.ipynb 30
+# %% ../nbs/02_maker.ipynb 29
 def update_import(source, tree, libname, f=relative_import):
     if not tree: return
     imps = L(tree).filter(risinstance(ast.ImportFrom))
@@ -162,12 +162,12 @@ def import2relative(cell:NbCell, libname):
     src = update_import(cell.source, cell.parsed_(), libname)
     if src: cell.set_source(src)
 
-# %% ../nbs/02_maker.ipynb 32
+# %% ../nbs/02_maker.ipynb 31
 @patch
 def _update_all(self:LibraryMaker, all_cells, alls):
     return pformat(alls + self.make_all(all_cells), width=160)
 
-# %% ../nbs/02_maker.ipynb 33
+# %% ../nbs/02_maker.ipynb 32
 @patch
 def make(self:LibraryMaker, cells, all_cells=None, lib_name=None):
     "Writes module containing `cells` with `__all__` generated from `all_cells`"
@@ -189,7 +189,7 @@ def make(self:LibraryMaker, cells, all_cells=None, lib_name=None):
     cells.insert(last_future, make_code_cell(f"__all__ = " + '\n'.join(tw.wrap(str(_all))),0))
     super(LibraryMaker,self).make(cells)
 
-# %% ../nbs/02_maker.ipynb 42
+# %% ../nbs/02_maker.ipynb 41
 def basic_export_nb2(fname, name, dest=None):
     "A basic exporter to bootstrap nbprocess using `LibraryMaker`"
     if dest is None: dest = get_config().path('lib_path')
