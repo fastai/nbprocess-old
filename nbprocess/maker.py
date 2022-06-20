@@ -128,7 +128,7 @@ def retr_exports(trees):
 class LibraryMaker(ModuleMaker): 
     "Helper class to create exported library from notebook source cells"
     def make_all(self, cells):
-        "Create `__all__` with all exported in `cells`"
+        "Create `__all__` with all exported code in `cells`"
         if cells is None: return ''
         return retr_exports(cells.map(NbCell.parsed_).concat())
 
