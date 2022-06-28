@@ -88,13 +88,13 @@ def process_write(warn_msg, proc_nb, f_in, f_out=None, disp=False):
 @call_parse
 def nbprocess_clean(
     fname:str=None, # A notebook name or glob to convert
-    clear_all:bool=False, # Clean all metadata and outputs
+    keep_meta:bool=False, # Keep all metadata and outputs
     disp:bool=False,  # Print the cleaned outputs
     stdin:bool=False # Read input stream and not nb folder
 ):
     "Clean all notebooks in `fname` to avoid merge conflicts"
     # Git hooks will pass the notebooks in stdin
-    _clean = partial(clean_nb, clear_all=clear_all)
+    _clean = partial(clean_nb, clear_all=not keep_meta)
     _write = partial(process_write, warn_msg='Failed to clean notebook', proc_nb=_clean)
     if stdin: _write(f_in=wrapio(sys.stdin), f_out=wrapio(sys.stdout))
     
