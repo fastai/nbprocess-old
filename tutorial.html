@@ -1,0 +1,806 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.0.36">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="description" content="A step by step guide">
+
+<title>nbprocess - nbprocess tutorial</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+span.underline{text-decoration: underline;}
+div.column{display: inline-block; vertical-align: top; width: 50%;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<link rel="stylesheet" href="styles.css">
+<meta property="og:title" content="nbprocess - nbprocess tutorial">
+<meta property="og:description" content="A step by step guide">
+<meta property="og:image" content="images/nbprocess_source.gif">
+<meta property="og:site-name" content="nbprocess">
+<meta name="twitter:title" content="nbprocess - nbprocess tutorial">
+<meta name="twitter:description" content="A step by step guide">
+<meta name="twitter:image" content="images/nbprocess_source.gif">
+<meta name="twitter:card" content="summary_large_image">
+</head>
+
+<body class="nav-sidebar floating nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <a class="navbar-brand" href="./index.html">
+    <span class="navbar-title">nbprocess</span>
+  </a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/fastai/nbprocess"><i class="bi bi-github" role="img">
+</i> 
+ </a>
+  </li>  
+</ul>
+              <div class="quarto-toggle-container">
+                  <a href="" class="quarto-reader-toggle nav-link" onclick="window.quartoToggleReader(); return false;" title="Toggle reader mode">
+  <div class="quarto-reader-toggle-btn">
+  <i class="bi"></i>
+  </div>
+</a>
+              </div>
+              <div id="quarto-search" class="" title="Search"></div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+    <div class="container-fluid d-flex justify-content-between">
+      <h1 class="quarto-secondary-nav-title">nbprocess tutorial</h1>
+      <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
+        <i class="bi bi-chevron-right"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation floating overflow-auto">
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">nbprocess</a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./read.html" class="sidebar-item-text sidebar-link">read</a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./maker.html" class="sidebar-item-text sidebar-link">maker</a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./process.html" class="sidebar-item-text sidebar-link">process</a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./export.html" class="sidebar-item-text sidebar-link">export</a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./doclinks.html" class="sidebar-item-text sidebar-link">doclinks</a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./sync.html" class="sidebar-item-text sidebar-link">sync</a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./merge.html" class="sidebar-item-text sidebar-link">merge</a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./showdoc.html" class="sidebar-item-text sidebar-link">showdoc</a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./processors.html" class="sidebar-item-text sidebar-link">processors</a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./cli.html" class="sidebar-item-text sidebar-link">cli</a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./11_clean.html" class="sidebar-item-text sidebar-link">Clean</a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./test.html" class="sidebar-item-text sidebar-link">Test Notebooks</a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./migrate.html" class="sidebar-item-text sidebar-link">Migrate to nbprocess</a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./shortcuts.html" class="sidebar-item-text sidebar-link">shortcuts</a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./tutorial.html" class="sidebar-item-text sidebar-link active">nbprocess tutorial</a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#set-up-your-jupyter-server" id="toc-set-up-your-jupyter-server" class="nav-link active" data-scroll-target="#set-up-your-jupyter-server">Set up Your Jupyter Server</a>
+  <ul class="collapse">
+  <li><a href="#jupyter-environment" id="toc-jupyter-environment" class="nav-link" data-scroll-target="#jupyter-environment">Jupyter Environment</a></li>
+  <li><a href="#install-nbprocess" id="toc-install-nbprocess" class="nav-link" data-scroll-target="#install-nbprocess">Install <code>nbprocess</code></a></li>
+  </ul></li>
+  <li><a href="#set-up-repo" id="toc-set-up-repo" class="nav-link" data-scroll-target="#set-up-repo">Set up Repo</a>
+  <ul class="collapse">
+  <li><a href="#create-new-project" id="toc-create-new-project" class="nav-link" data-scroll-target="#create-new-project">Create New Project</a></li>
+  <li><a href="#github-pages" id="toc-github-pages" class="nav-link" data-scroll-target="#github-pages">GitHub pages</a></li>
+  </ul></li>
+  <li><a href="#edit-settings.ini" id="toc-edit-settings.ini" class="nav-link" data-scroll-target="#edit-settings.ini">Edit settings.ini</a></li>
+  <li><a href="#install-git-hooks-to-avoid-and-handle-conflicts" id="toc-install-git-hooks-to-avoid-and-handle-conflicts" class="nav-link" data-scroll-target="#install-git-hooks-to-avoid-and-handle-conflicts">Install git hooks to avoid and handle conflicts</a></li>
+  <li><a href="#start-the-documentation-server" id="toc-start-the-documentation-server" class="nav-link" data-scroll-target="#start-the-documentation-server">Start the Documentation Server</a></li>
+  <li><a href="#edit-00_core.ipynb" id="toc-edit-00_core.ipynb" class="nav-link" data-scroll-target="#edit-00_core.ipynb">Edit 00_core.ipynb</a>
+  <ul class="collapse">
+  <li><a href="#module-name-and-summary" id="toc-module-name-and-summary" class="nav-link" data-scroll-target="#module-name-and-summary">Module name and summary</a></li>
+  <li><a href="#add-a-function" id="toc-add-a-function" class="nav-link" data-scroll-target="#add-a-function">Add a function</a></li>
+  <li><a href="#add-examples-and-tests" id="toc-add-examples-and-tests" class="nav-link" data-scroll-target="#add-examples-and-tests">Add examples and tests</a></li>
+  </ul></li>
+  <li><a href="#edit-index.ipynb" id="toc-edit-index.ipynb" class="nav-link" data-scroll-target="#edit-index.ipynb">Edit index.ipynb</a></li>
+  <li><a href="#build-lib-test" id="toc-build-lib-test" class="nav-link" data-scroll-target="#build-lib-test">Build lib + test</a></li>
+  <li><a href="#preview-the-docs" id="toc-preview-the-docs" class="nav-link" data-scroll-target="#preview-the-docs">Preview The docs</a></li>
+  <li><a href="#commit-to-github" id="toc-commit-to-github" class="nav-link" data-scroll-target="#commit-to-github">Commit to Github</a>
+  <ul class="collapse">
+  <li><a href="#continuous-integration-ci" id="toc-continuous-integration-ci" class="nav-link" data-scroll-target="#continuous-integration-ci">Continuous Integration (CI)</a></li>
+  <li><a href="#view-docs-and-readme" id="toc-view-docs-and-readme" class="nav-link" data-scroll-target="#view-docs-and-readme">View docs and readme</a></li>
+  </ul></li>
+  <li><a href="#add-a-class" id="toc-add-a-class" class="nav-link" data-scroll-target="#add-a-class">Add a class</a>
+  <ul class="collapse">
+  <li><a href="#document-with-show_doc" id="toc-document-with-show_doc" class="nav-link" data-scroll-target="#document-with-show_doc">Document with show_doc</a></li>
+  </ul></li>
+  <li><a href="#add-links-with-backticks" id="toc-add-links-with-backticks" class="nav-link" data-scroll-target="#add-links-with-backticks">Add links with backticks</a></li>
+  <li><a href="#set-up-autoreload" id="toc-set-up-autoreload" class="nav-link" data-scroll-target="#set-up-autoreload">Set up autoreload</a></li>
+  <li><a href="#add-in-notebook-export-cell" id="toc-add-in-notebook-export-cell" class="nav-link" data-scroll-target="#add-in-notebook-export-cell">Add in-notebook export cell</a></li>
+  <li><a href="#run-tests-in-parallel" id="toc-run-tests-in-parallel" class="nav-link" data-scroll-target="#run-tests-in-parallel">Run tests in parallel</a></li>
+  <li><a href="#code-execution-skipping-cells" id="toc-code-execution-skipping-cells" class="nav-link" data-scroll-target="#code-execution-skipping-cells">Code Execution &amp; Skipping Cells</a></li>
+  <li><a href="#view-docs-locally" id="toc-view-docs-locally" class="nav-link" data-scroll-target="#view-docs-locally">View docs locally</a></li>
+  <li><a href="#set-up-prerequisites" id="toc-set-up-prerequisites" class="nav-link" data-scroll-target="#set-up-prerequisites">Set up prerequisites</a></li>
+  <li><a href="#set-up-console-scripts" id="toc-set-up-console-scripts" class="nav-link" data-scroll-target="#set-up-console-scripts">Set up console scripts</a></li>
+  <li><a href="#test-with-editable-install" id="toc-test-with-editable-install" class="nav-link" data-scroll-target="#test-with-editable-install">Test with editable install</a></li>
+  <li><a href="#upload-to-pypi" id="toc-upload-to-pypi" class="nav-link" data-scroll-target="#upload-to-pypi">Upload to pypi</a></li>
+  <li><a href="#upload-to-pypi-and-conda" id="toc-upload-to-pypi-and-conda" class="nav-link" data-scroll-target="#upload-to-pypi-and-conda">Upload to pypi and conda</a></li>
+  <li><a href="#install-collapsible-headings-and-toc2" id="toc-install-collapsible-headings-and-toc2" class="nav-link" data-scroll-target="#install-collapsible-headings-and-toc2">Install collapsible headings and toc2</a></li>
+  <li><a href="#math-equation-support" id="toc-math-equation-support" class="nav-link" data-scroll-target="#math-equation-support">Math equation support</a></li>
+  <li><a href="#controling-cell-and-output-visibility" id="toc-controling-cell-and-output-visibility" class="nav-link" data-scroll-target="#controling-cell-and-output-visibility">Controling Cell and Output Visibility</a></li>
+  <li><a href="#cli-command-list" id="toc-cli-command-list" class="nav-link" data-scroll-target="#cli-command-list">CLI Command List</a></li>
+  <li><a href="#look-at-nbprocess-source-for-more-ideas" id="toc-look-at-nbprocess-source-for-more-ideas" class="nav-link" data-scroll-target="#look-at-nbprocess-source-for-more-ideas">Look at nbprocess “source” for more ideas</a></li>
+  </ul>
+<div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/fastai/nbprocess/issues/new" class="toc-action">Report an issue</a></p></div></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title d-none d-lg-block">nbprocess tutorial</h1>
+</div>
+
+<div>
+  <div class="description">
+    A step by step guide
+  </div>
+</div>
+
+
+<div class="quarto-title-meta">
+
+    
+    
+  </div>
+  
+
+</header>
+
+<!-- WARNING: THIS FILE WAS AUTOGENERATED! DO NOT EDIT! -->
+<p>nbprocess is a system for <em>exploratory programming</em>. In practice, programming in this way can feel very different to the kind of programming many of you will be familiar with, since we’ve mainly be taught coding techniques that are (at least implicitly) tied to the underlying tools we have access to. I’ve found that programming in a “notebook first” way can make me 2-3x more productive than I was before (when we used vscode, Visual Studio, vim, PyCharm, and similar tools).</p>
+<p>In this tutorial, I’ll try to get you up and running with the basics of the nbprocess system as quickly and easily as possible. You can also watch this video in which I take you through the tutorial, step by step (to view full screen, click the little square in the bottom right of the video; to view in a separate Youtube window, click the Youtube logo):</p>
+<iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/Hrs7iEYmRmg" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="">
+</iframe>
+<section id="set-up-your-jupyter-server" class="level2">
+<h2 class="anchored" data-anchor-id="set-up-your-jupyter-server">Set up Your Jupyter Server</h2>
+<section id="jupyter-environment" class="level3">
+<h3 class="anchored" data-anchor-id="jupyter-environment">Jupyter Environment</h3>
+<p>To complete this tutorial, you’ll need a Jupyter Notebook Server configured on your machine. If you have not installed Jupyter before, you may find the <a href="https://www.anaconda.com/products/individual">Anaconda Individual Edition</a> the simplest to install.</p>
+<p>If you already have experience with Jupyter, please note that everything in this tutorial must be run using the same kernel.</p>
+</section>
+<section id="install-nbprocess" class="level3">
+<h3 class="anchored" data-anchor-id="install-nbprocess">Install <code>nbprocess</code></h3>
+<p>No matter how you installed Jupyter, you’ll need to manually install <code>nbprocess</code>. You can install nbprocess with <code>pip</code> or <a href="https://nbprocess.fast.ai/shortcuts#conda">conda</a> from a terminal window:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">pip</span> install nbprocess</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>or</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> install <span class="at">-c</span> fastai nbprocess</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Jupyter notebook has a terminal window available, so we’ll use that: 1. Start <code>jupyter notebook</code> 2. From the “New” dropdown on the right side, choose <code>Terminal</code>. 3. Enter “<code>python -m pip install nbprocess</code>” (or use conda as specified above)</p>
+<p>When the command completes, you’re ready to go.</p>
+</section>
+</section>
+<section id="set-up-repo" class="level2">
+<h2 class="anchored" data-anchor-id="set-up-repo">Set up Repo</h2>
+<section id="create-new-project" class="level3">
+<h3 class="anchored" data-anchor-id="create-new-project">Create New Project</h3>
+<p>To create your new project repo, use the cli command <a href="https://nbprocess.fast.ai/cli#nbprocess_new">nbprocess_new</a> to <strong>create a new nbprocess project from an existing GitHub repo that you have cloned locally.</strong> <em>To create a new GitHub repo locally, we recommend the <a href="https://cli.github.com/">gh cli</a> tool, which allows you to create a new repo with the command <code>gh repo create</code>.</em></p>
+<p>Alternatively, you can create a new empty github repository using <a href="https://github.com/new">this link</a>, and follow the instructions on github to clone the repository locally before running the command <a href="https://nbprocess.fast.ai/cli#nbprocess_new">nbprocess_new</a></p>
+</section>
+<section id="github-pages" class="level3">
+<h3 class="anchored" data-anchor-id="github-pages">GitHub pages</h3>
+<p>The nbprocess system uses <a href="https://quarto.org/">quarto</a> for documentation. You can host your site for free on <a href="https://pages.github.com/">Github Pages</a> without any additional setup, so this is the approach we recommend (but it’s not required; any static site hosting will work fine).</p>
+<p>After you setup your repo and push to GitHub following the steps below, GitHub pages will automatically be built and enabled for you using continuous integration CI. We will discuss how CI works later in this tutorial, however for most people this should work by default.</p>
+<blockquote class="blockquote">
+<p>NOTE: Don’t expect your Pages to build &amp; deploy properly yet; we still have some setup to do first!</p>
+</blockquote>
+<section id="previewing-documents-locally" class="level4">
+<h4 class="anchored" data-anchor-id="previewing-documents-locally">Previewing Documents Locally</h4>
+<p>It is often desirable to preview the documentation locally before having it built and rendered by GitHub Pages. This requires you to run Quarto locally. You can run the command <code>nbprocess_preview</code> from the root of your repo to preview the documentation locally</p>
+</section>
+</section>
+</section>
+<section id="edit-settings.ini" class="level2">
+<h2 class="anchored" data-anchor-id="edit-settings.ini">Edit settings.ini</h2>
+<p>Next, edit the <code>settings.ini</code> file in your cloned repo. This file contains all the necessary information for when you’ll be ready to package your library. The basic structure (that can be personalized provided you change the relevant information in <code>settings.ini</code>) is that the root of the repo will contain your notebooks, the <a href="https://nbprocess.fast.ai/shortcuts#docs">docs</a> folder will contain your auto-generated docs, and a folder with a name you select will contain your auto-generated modules.</p>
+<p>You’ll see these commented out lines in <code>settings.ini</code>. Uncomment them, and set each value as needed.</p>
+<pre><code># lib_name = your_project_name
+# repo_name = name of github repo
+# user = your_github_username
+# description = A description of your project
+# keywords = some keywords
+# author = Your Name
+# author_email = email@example.com
+# copyright = Your Name or Company Name
+# branch = The default branch of your GitHub repo (usually either master or main)</code></pre>
+<p>We’ll see some other settings we can change later.</p>
+</section>
+<section id="install-git-hooks-to-avoid-and-handle-conflicts" class="level2">
+<h2 class="anchored" data-anchor-id="install-git-hooks-to-avoid-and-handle-conflicts">Install git hooks to avoid and handle conflicts</h2>
+<p>Jupyter Notebooks can cause challenges with git conflicts, but life becomes much easier when you use <code>nbprocess</code>. As a first step, run <a href="https://nbprocess.fast.ai/clean#nbprocess_install_hooks">nbprocess_install_hooks</a> in the terminal from your project folder. This will set up hooks which will remove metadata from your notebooks when you commit, greatly reducing the chance you have a conflict.</p>
+<p>But if you do get a conflict later, simply run <code>nbprocess_clean filename.ipynb</code>. This will replace any conflicts in cell outputs with your version, and if there are conflicts in input cells, then both cells will be included in the merged file, along with standard conflict markers (e.g.&nbsp;<code>=====</code>). Then you can open the notebook in Jupyter and choose which version to keep.</p>
+</section>
+<section id="start-the-documentation-server" class="level2">
+<h2 class="anchored" data-anchor-id="start-the-documentation-server">Start the Documentation Server</h2>
+<p>You can call <code>nbprocess_preview</code> from the root of the repo to start the documentation server so you can see how your docs will render as you edit your notebooks. This is optional, but often useful especially if you are writing docs.</p>
+</section>
+<section id="edit-00_core.ipynb" class="level2">
+<h2 class="anchored" data-anchor-id="edit-00_core.ipynb">Edit 00_core.ipynb</h2>
+<p>Now, run <code>jupyter notebook</code>, and click <code>00_core.ipynb</code> (you don’t <em>have</em> to start your notebook names with a number like we do here; but we find it helpful to show the order you’ve created your project in). You’ll see something that looks a bit like this:</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co">#|default_exp core</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><strong>module name here</strong></p>
+<blockquote class="blockquote">
+<p>API details.</p>
+</blockquote>
+<p>Let’s explain what these special cells mean.</p>
+<section id="module-name-and-summary" class="level3">
+<h3 class="anchored" data-anchor-id="module-name-and-summary">Module name and summary</h3>
+<p>The markdown cell uses special syntax to define the title and summary of your module. Feel free to replace “module name here” with a title and “API details.” with a summary for your module.</p>
+</section>
+<section id="add-a-function" class="level3">
+<h3 class="anchored" data-anchor-id="add-a-function">Add a function</h3>
+<p>Let’s add a function to this notebook, e.g.:</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co">#|export</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> say_hello(to):</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    <span class="co">"Say hello to somebody"</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="ss">f'Hello </span><span class="sc">{</span>to<span class="sc">}</span><span class="ss">!'</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Notice how it includes <code>#|export</code> at the top - this means it will be included in your module, and documentation. The documentation will look like this:</p>
+<div class="cell" data-execution_count="1">
+<div class="cell-output cell-output-display" data-execution_count="1">
+<hr>
+<section id="say_hello" class="level4">
+<h4 class="anchored" data-anchor-id="say_hello">say_hello</h4>
+<blockquote class="blockquote">
+<pre><code> say_hello (to)</code></pre>
+</blockquote>
+<p>Say hello to somebody</p>
+</section>
+</div>
+</div>
+</section>
+<section id="add-examples-and-tests" class="level3">
+<h3 class="anchored" data-anchor-id="add-examples-and-tests">Add examples and tests</h3>
+<p>It’s a good idea to give an example of your function in action. Just include regular code cells, and they’ll appear (with output) in the docs, e.g.:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>say_hello(<span class="st">"Isaac"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Examples can output plots, images, etc, and they’ll all appear in your docs, e.g.:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> IPython.display <span class="im">import</span> display,SVG</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>display(SVG(<span class="st">'&lt;svg height="100"&gt;&lt;circle cx="50" cy="50" r="40"/&gt;&lt;/svg&gt;'</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>You can also include tests:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="cf">assert</span> say_hello(<span class="st">"Hamel"</span>)<span class="op">==</span><span class="st">"Hello Hamel!"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>You should also add markdown headings as you create your notebook; one benefit of this is that a table of contents will be created in the documentation automatically.</p>
+</section>
+</section>
+<section id="edit-index.ipynb" class="level2">
+<h2 class="anchored" data-anchor-id="edit-index.ipynb">Edit index.ipynb</h2>
+<p>Now you’re ready to create your documentation home page and README.md file; these are both generated automatically from <em>index.ipynb</em>. So click on that to open it now.</p>
+<p>You’ll see that there’s already a line there to import your library - change it to use the name you selected in <code>settings.ini</code>. Then, add information about how to use your module, including some examples. Remember, these examples should be actual notebook code cells with real outputs.</p>
+</section>
+<section id="build-lib-test" class="level2">
+<h2 class="anchored" data-anchor-id="build-lib-test">Build lib + test</h2>
+<p>Now you can create your python module. To do so, just run <code>nbprocess_prepare</code> from the terminal at the root of your project folder. <code>nbprocess_prepare</code> bundles the following commands together for you to test your code and build the library. While running <code>nbprocess_prepare</code> is convenient, you have the flexibility to choose these seperate pieces. - <a href="https://nbprocess.fast.ai/doclinks#nbprocess_export">nbprocess_export</a>: Builds the .py modules and library from the jupyter notebook - <a href="https://nbprocess.fast.ai/test#nbprocess_test">nbprocess_test</a>: Tests all your notebooks - <a href="https://nbprocess.fast.ai/clean#nbprocess_clean">nbprocess_clean</a>: Cleans your notebooks to get rid of extreanous output for Github</p>
+<p>Sometimes you may want to ensure you have the latest version of your python library and quarto installed. You can run <code>nbprocess_install</code> to do an editable install of your local python library as well as fetch and install the latest version of Quarto.</p>
+</section>
+<section id="preview-the-docs" class="level2">
+<h2 class="anchored" data-anchor-id="preview-the-docs">Preview The docs</h2>
+<p>If you have not already, you should view your docs in fully rendered form to catch any mistakes. You can preview your documentation site with the command <code>nbprocess_preview</code>. Note that your docs will build automatically in CI (discussed below).</p>
+</section>
+<section id="commit-to-github" class="level2">
+<h2 class="anchored" data-anchor-id="commit-to-github">Commit to Github</h2>
+<p>You can now check-in the generated files with <code>git add</code>, <code>git commit</code> and <code>git push</code>. (You can use <code>git status</code> to check which files have been generated.) The following command should be sufficient:</p>
+<pre><code>git add -A; git commit -m'check in files'; git push</code></pre>
+<p>Wait a minute or two for Github to process your commit, and then head over to the Github website to look at your results.</p>
+<section id="continuous-integration-ci" class="level3">
+<h3 class="anchored" data-anchor-id="continuous-integration-ci">Continuous Integration (CI)</h3>
+<p>Back in your project’s Github main page, click where it says <em>1 commit</em> (or <em>2 commits</em> or whatever). Hopefully, you’ll see a green checkmark next to your latest commit. That means that your documentation site built correctly, and your module’s tests all passed! This is checked for you using <em>continuous integration (CI)</em> with <a href="https://github.com/features/actions">GitHub actions</a>. This does the following:</p>
+<ul>
+<li>check the notebooks have been cleaned of needless metadata to avoid merge conflicts (with <a href="https://nbprocess.fast.ai/clean#nbprocess_clean">nbprocess_clean</a>)</li>
+<li>run the tests in your notebooks (with <a href="https://nbprocess.fast.ai/test#nbprocess_test">nbprocess_test</a>)</li>
+</ul>
+<p>The template contains a basic CI that uses the two points above, edit the file <code>.github/workflows/test.yaml</code> to your liking and comment out the parts you don’t want.</p>
+<p>If you have a red cross, that means something failed. Click on the cross, then click <em>Details</em>, and you’ll be able to see what failed.</p>
+<section id="automatically-building-docs" class="level4">
+<h4 class="anchored" data-anchor-id="automatically-building-docs">Automatically Building Docs</h4>
+<p>CI will automatically build docs and deploy them for you. You can see the code for this in <code>.github/workflows/deploy.yaml</code>, but you normally don’t have to worry about this unless you need to customize something. There might be certain circumstances in which your organization has disabled GitHub pages by default. If this is the case, you can enable Github Pages by clicking on the <em>Settings</em> tab in your repo, then click <em>Pages</em> on the left side bar. Set “Source” to <em><code>gh-pages</code> branch and the <code>/root</code> folder</em>. Once you’ve saved, if you refresh that page, Github will have a link to your new website. Copy that URL, and then go back to your main repo page, click “edit” next to the description and paste the URL into the “website” section. While you’re there, go ahead and put in your project description too.</p>
+</section>
+<section id="docs-url" class="level4">
+<h4 class="anchored" data-anchor-id="docs-url">Docs URL</h4>
+<p>To see the URL for your docs site, you can go to the <code>Settings</code> tab on your GitHub repo, click <code>Pages</code> on the left hand side, and your URL will be displayed there. If you need to customize the domain name, see <a href="https://docs.github.com/en/pages/configuring-a-custom-domain-for-your-github-pages-site/managing-a-custom-domain-for-your-github-pages-site">this article</a>.</p>
+</section>
+</section>
+<section id="view-docs-and-readme" class="level3">
+<h3 class="anchored" data-anchor-id="view-docs-and-readme">View docs and readme</h3>
+<p>Once everything is passing, have a look at your readme in Github. You’ll see that your <code>index.ipynb</code> file has been converted to a readme automatically.</p>
+<p>Next, go to your documentation site (e.g.&nbsp;by clicking on the link next to the description that you created earlier). You should see that your index notebook has also been used here.</p>
+<p>Congratulations, the basics are now all in place! Let’s continue and use some more advanced functionality.</p>
+</section>
+</section>
+<section id="add-a-class" class="level2">
+<h2 class="anchored" data-anchor-id="add-a-class">Add a class</h2>
+<p>Create a class in <code>00_core.ipynb</code> as follows:</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co">#|export</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> HelloSayer:</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>    <span class="co">"Say hello to `to` using `say_hello`"</span></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, to): <span class="va">self</span>.to <span class="op">=</span> to</span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> say(<span class="va">self</span>):</span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>        <span class="co">"Do the saying"</span></span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> say_hello(<span class="va">self</span>.to)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>This will automatically appear in the docs like this:</p>
+<div class="cell" data-execution_count="2">
+<div class="cell-output cell-output-display" data-execution_count="2">
+<hr>
+<section id="hellosayer" class="level3">
+<h3 class="anchored" data-anchor-id="hellosayer">HelloSayer</h3>
+<blockquote class="blockquote">
+<pre><code> HelloSayer (to)</code></pre>
+</blockquote>
+<p>Say hello to <code>to</code> using <code>say_hello</code></p>
+</section>
+</div>
+</div>
+<section id="document-with-show_doc" class="level3">
+<h3 class="anchored" data-anchor-id="document-with-show_doc">Document with show_doc</h3>
+<p>However, methods aren’t automatically documented. To add method docs, use <a href="https://nbprocess.fast.ai/showdoc#show_doc">show_doc</a>:</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>show_doc(HelloSayer.say)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-execution_count="3">
+<div class="cell-output cell-output-display" data-execution_count="3">
+<hr>
+<section id="hellosayer.say" class="level4">
+<h4 class="anchored" data-anchor-id="hellosayer.say">HelloSayer.say</h4>
+<blockquote class="blockquote">
+<pre><code> HelloSayer.say ()</code></pre>
+</blockquote>
+<p>Do the saying</p>
+</section>
+</div>
+</div>
+<p>And add some examples and/or tests:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>o <span class="op">=</span> HelloSayer(<span class="st">"Alexis"</span>)</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>o.say()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+</section>
+<section id="add-links-with-backticks" class="level2">
+<h2 class="anchored" data-anchor-id="add-links-with-backticks">Add links with backticks</h2>
+<p>Notice above there is a link from our new class documentation to our function. That’s because we used backticks in the docstring:</p>
+<div class="sourceCode" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>    <span class="co">"Say hello to `to` using `say_hello`"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>These are automatically converted to hyperlinks wherever possible. For instance, here are hyperlinks to <a href="https://nbprocess.fast.ai/tutorial#HelloSayer">HelloSayer</a> and <a href="https://nbprocess.fast.ai/tutorial#say_hello">say_hello</a> created using backticks.</p>
+</section>
+<section id="set-up-autoreload" class="level2">
+<h2 class="anchored" data-anchor-id="set-up-autoreload">Set up autoreload</h2>
+<p>Since you’ll be often updating your modules from one notebook, and using them in another, it’s helpful if your notebook automatically reads in the new modules as soon as the python file changes. To make this happen, just add these lines to the top of your notebook:</p>
+<pre><code>%load_ext autoreload
+%autoreload 2</code></pre>
+</section>
+<section id="add-in-notebook-export-cell" class="level2">
+<h2 class="anchored" data-anchor-id="add-in-notebook-export-cell">Add in-notebook export cell</h2>
+<p>It’s helpful to be able to export all your modules directly from a notebook, rather than going to the terminal to do it. All nbprocess commands are available directly from a notebook in Python. Add this line to any cell and run it to export your modules (I normally make this the last cell of my notebooks).</p>
+<div class="sourceCode" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> nbprocess.doclinks <span class="im">import</span> nbprocess_export</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>nbprocess_export()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="run-tests-in-parallel" class="level2">
+<h2 class="anchored" data-anchor-id="run-tests-in-parallel">Run tests in parallel</h2>
+<p>Before you push to github or make a release, you might want to run all your tests. nbprocess can run all your notebooks in parallel to check for errors. Just run <a href="https://nbprocess.fast.ai/test#nbprocess_test">nbprocess_test</a> in a terminal.</p>
+</section>
+<section id="code-execution-skipping-cells" class="level2">
+<h2 class="anchored" data-anchor-id="code-execution-skipping-cells">Code Execution &amp; Skipping Cells</h2>
+<p>If you want to prevent code from getting executed when rendering or testing docs, use the comment <code>|#eval: false</code> in a code cell.</p>
+<p>See the <a href="https://quarto.org/docs/computations/execution-options.html">quarto docs</a> for more execution options.</p>
+</section>
+<section id="view-docs-locally" class="level2">
+<h2 class="anchored" data-anchor-id="view-docs-locally">View docs locally</h2>
+<p>If you want to look at your docs locally before you push to Github, you can do so by running <code>nbprocess_preview</code>.</p>
+</section>
+<section id="set-up-prerequisites" class="level2">
+<h2 class="anchored" data-anchor-id="set-up-prerequisites">Set up prerequisites</h2>
+<p>If your module requires other modules as dependencies, you can add those prerequisites to your <code>settings.ini</code> in the <code>requirements</code> section. The requirements should be separated by a space and if the module requires at least or at most a specific version of the requirement this may be specified here, too.</p>
+<p>For example if your module requires the <code>fastcore</code> module of at least version 1.0.5, the <code>torchvision</code> module of at most version 0.7 and any version of <code>matplotlib</code>, then the prerequisites would look like this:</p>
+<div class="sourceCode" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>requirements <span class="op">=</span> fastcore<span class="op">&gt;=</span><span class="fl">1.0.5</span> torchvision<span class="op">&lt;</span><span class="fl">0.7</span> matplotlib</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>In addition to <code>requirements</code> you can specify dependencies with other keywords that have different scopes. Below is a list of all possible dependency keywords:</p>
+<ul>
+<li><code>requirements</code>: Passed to both pip and conda setup</li>
+<li><code>pip_requirements</code>: Passed to pip setup only</li>
+<li><code>conda_requirements</code>: Passed to conda setup only</li>
+<li><code>dev_requirements</code>: Passed to pip setup as a development requirement</li>
+</ul>
+<p>For more information about the format of dependencies, see the pypi and conda docs on creating specifications in <a href="https://packaging.python.org/tutorials/packaging-projects/#creating-setup-py">setup.py</a> and <a href="https://docs.conda.io/projects/conda-build/en/latest/resources/define-metadata.html">meta.yaml</a>, respectively.</p>
+</section>
+<section id="set-up-console-scripts" class="level2">
+<h2 class="anchored" data-anchor-id="set-up-console-scripts">Set up console scripts</h2>
+<p>Behind the scenes, nbprocess uses that standard package <code>setuptools</code> for handling installation of modules. One very useful feature of <code>setuptools</code> is that it can automatically create <a href="https://python-packaging.readthedocs.io/en/latest/command-line-scripts.html#the-console-scripts-entry-point">cross-platform console scripts</a>. nbprocess surfaces this functionality; to use it, use the same format as <code>setuptools</code>, with whitespace between each script definition (if you have more than one).</p>
+<pre><code>console_scripts = nbprocess_export=nbprocess.cli:nbprocess_export</code></pre>
+</section>
+<section id="test-with-editable-install" class="level2">
+<h2 class="anchored" data-anchor-id="test-with-editable-install">Test with editable install</h2>
+<p>To test and use your modules in other projects, and use your console scripts (if you have any), the easiest approach is to use an <a href="http://codumentary.blogspot.com/2014/11/python-tip-of-year-pip-install-editable.html">editable install</a>. To do this, <code>cd</code> to the root of your repo in the terminal, and type:</p>
+<pre><code>pip install -e .</code></pre>
+<p>(Note that the trailing period is important.) Your module changes will be automatically picked up without reinstalling. If you add any additional console scripts, you will need to run this command again. After doing an editable install you can run <a href="https://nbprocess.fast.ai/test#nbprocess_test">nbprocess_test</a> to run all of the tests in your notebooks.</p>
+</section>
+<section id="upload-to-pypi" class="level2">
+<h2 class="anchored" data-anchor-id="upload-to-pypi">Upload to pypi</h2>
+<p>If you want people to be able to install your project by just typing <code>pip install your-project</code> then you need to upload it to <a href="https://pypi.org/">pypi</a>. The good news is, we’ve already created a fully pypi compliant installer for your project! So all you need to do is register at pypi (click “Register” on pypi) if you haven’t previously done so, and then create a file called <code>~/.pypirc</code> with your login details. It should have these contents:</p>
+<pre><code>[pypi]
+username = your_pypi_username
+password = your_pypi_password</code></pre>
+<p>Another thing you will need is <code>twine</code>, so you should run once</p>
+<pre><code>pip install twine</code></pre>
+<p>To upload your project to pypi, just type <code>nbprocess_pypi</code> in your project root directory. Once it’s complete, a link to your project on pypi will be printed.</p>
+</section>
+<section id="upload-to-pypi-and-conda" class="level2">
+<h2 class="anchored" data-anchor-id="upload-to-pypi-and-conda">Upload to pypi and conda</h2>
+<p>The command <code>nbprocess_release</code> from the root of your nbprocess repo will bump the version of your module and upload your project to both conda and pypi.</p>
+</section>
+<section id="install-collapsible-headings-and-toc2" class="level2">
+<h2 class="anchored" data-anchor-id="install-collapsible-headings-and-toc2">Install collapsible headings and toc2</h2>
+<p>There are two jupyter notebook extensions that I highly recommend when working with projects like this. They are:</p>
+<ul>
+<li><a href="https://jupyter-contrib-nbextensions.readthedocs.io/en/latest/nbextensions/collapsible_headings/readme.html">Collapsible headings</a>: This lets you fold and unfold each section in your notebook, based on its markdown headings. You can also hit <kbd>left</kbd> to go to the start of a section, and <kbd>right</kbd> to go to the end</li>
+<li><a href="https://jupyter-contrib-nbextensions.readthedocs.io/en/latest/nbextensions/toc2/README.html">TOC2</a>: This adds a table of contents to your notebooks, which you can navigate either with the <code>Navigate</code> menu item it adds to your notebooks, or the TOC sidebar it adds. These can be modified and/or hidden using its settings.</li>
+</ul>
+</section>
+<section id="math-equation-support" class="level2">
+<h2 class="anchored" data-anchor-id="math-equation-support">Math equation support</h2>
+<p>nbprocess supports equations (using <a href="https://quarto.org/">Quarto</a>). You can include math in your notebook’s documentation using the following methods.</p>
+<p>Using <code>$$</code>, e.g.:</p>
+<pre><code>
+$$\sum_{i=1}^{k+1}i$$
+</code></pre>
+<p>Which is rendered as:</p>
+<blockquote class="blockquote">
+<p><span class="math display">\[\sum_{i=1}^{k+1}i\]</span></p>
+</blockquote>
+<p>Using <code>$</code>, e.g.:</p>
+<pre><code>This version is displayed inline: $\sum_{i=1}^{k+1}i$ . You can include text before and after.</code></pre>
+<p>Which is rendered as:</p>
+<blockquote class="blockquote">
+<p>This version is displayed inline: <span class="math inline">\(\sum_{i=1}^{k+1}i\)</span> . You can include text before and after.</p>
+</blockquote>
+<p>For more information, see <a href="https://quarto.org/docs/visual-editor/technical.html">the Quarto Docs</a></p>
+</section>
+<section id="controling-cell-and-output-visibility" class="level2">
+<h2 class="anchored" data-anchor-id="controling-cell-and-output-visibility">Controling Cell and Output Visibility</h2>
+<p>To control what is displayed or hidden in the docs from a notebook, you will want to use one more directives. Directives are special comments that have are preceeded by <code>|#</code> that do some kind of pre or post processing of a notebook data before docs are rendered. Some of these directives are part of Quarto, but others are ones that we have added to nbprocess. A walk-through of the most common ones are below:</p>
+<section id="hide" class="level4">
+<h4 class="anchored" data-anchor-id="hide"><code>|#hide</code></h4>
+<p>When you use this directive, you will not see the cell input or output.</p>
+</section>
+<section id="echo-false" class="level4">
+<h4 class="anchored" data-anchor-id="echo-false"><code>|#echo: false</code></h4>
+<p>This makes sure that only the output of a code cell is shown, not its input.</p>
+</section>
+<section id="hide_line" class="level4">
+<h4 class="anchored" data-anchor-id="hide_line"><code>|#hide_line</code></h4>
+<p>You can use this to hide as specific line in your code. for example:</p>
+<div class="sourceCode" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> _secret(): ...</span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">3</span>):</span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>    _secret() <span class="co">#|hide_line</span></span>
+<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(i)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>becomes this:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> _secret(): ...</span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">3</span>):</span>
+<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(i)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="filter_stream" class="level4">
+<h4 class="anchored" data-anchor-id="filter_stream"><code>#|filter_stream</code></h4>
+<p>This allows you to filter lines containing specific keywords in cell outputs. For example</p>
+<div class="sourceCode" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a><span class="co">#|filter_stream FutureWarning MultiIndex</span></span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'</span><span class="ch">\n</span><span class="st">'</span>.join([<span class="st">'A line'</span>, <span class="st">'Foobar baz FutureWarning blah'</span>, </span>
+<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a>                 <span class="st">'zig zagMultiIndex zoom'</span>, <span class="st">'Another line.'</span>]))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>becomes this:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'</span><span class="ch">\n</span><span class="st">'</span>.join([<span class="st">'A line'</span>, <span class="st">'Foobar baz FutureWarning blah'</span>, </span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>                 <span class="st">'zig zagMultiIndex zoom'</span>, <span class="st">'Another line.'</span>]))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>See the <a href="https://quarto.org/docs/output-formats/html-code.html#code-tools">Quarto docs</a> for additional code visibility options.</p>
+</section>
+</section>
+<section id="cli-command-list" class="level2">
+<h2 class="anchored" data-anchor-id="cli-command-list">CLI Command List</h2>
+<p>You can quickly pull up a list of all the <code>nbprocess</code> cli commands as well as a short description of what each command does with the command <code>nbprocess_help</code>.</p>
+</section>
+<section id="look-at-nbprocess-source-for-more-ideas" class="level2">
+<h2 class="anchored" data-anchor-id="look-at-nbprocess-source-for-more-ideas">Look at nbprocess “source” for more ideas</h2>
+<p>Don’t forget that nbprocess itself is written in nbprocess! It’s a good place to look to see how fast.ai uses it in practice, and get a few tips. You’ll find the nbprocess notebooks here in the <a href="https://github.com/fastai/nbprocess/tree/master/nbs">nbs folder</a> on Github.</p>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    setTimeout(function() {
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      let href = ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const cites = ref.parentNode.getAttribute('data-cites').split(' ');
+    tippyHover(ref, function() {
+      var popup = window.document.createElement('div');
+      cites.forEach(function(cite) {
+        var citeDiv = window.document.createElement('div');
+        citeDiv.classList.add('hanging-indent');
+        citeDiv.classList.add('csl-entry');
+        var biblioDiv = window.document.getElementById('ref-' + cite);
+        if (biblioDiv) {
+          citeDiv.innerHTML = biblioDiv.innerHTML;
+        }
+        popup.appendChild(citeDiv);
+      });
+      return popup.innerHTML;
+    });
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>

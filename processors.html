@@ -1,0 +1,775 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.0.36">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="description" content="Some processors for NBProcessor">
+
+<title>nbprocess - processors</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+span.underline{text-decoration: underline;}
+div.column{display: inline-block; vertical-align: top; width: 50%;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+
+
+<link rel="stylesheet" href="styles.css">
+<meta property="og:title" content="nbprocess - processors">
+<meta property="og:description" content="Some processors for NBProcessor">
+<meta property="og:site-name" content="nbprocess">
+<meta name="twitter:title" content="nbprocess - processors">
+<meta name="twitter:description" content="Some processors for NBProcessor">
+<meta name="twitter:card" content="summary">
+</head>
+
+<body class="nav-sidebar floating nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <a class="navbar-brand" href="./index.html">
+    <span class="navbar-title">nbprocess</span>
+  </a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/fastai/nbprocess"><i class="bi bi-github" role="img">
+</i> 
+ </a>
+  </li>  
+</ul>
+              <div class="quarto-toggle-container">
+                  <a href="" class="quarto-reader-toggle nav-link" onclick="window.quartoToggleReader(); return false;" title="Toggle reader mode">
+  <div class="quarto-reader-toggle-btn">
+  <i class="bi"></i>
+  </div>
+</a>
+              </div>
+              <div id="quarto-search" class="" title="Search"></div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+    <div class="container-fluid d-flex justify-content-between">
+      <h1 class="quarto-secondary-nav-title">processors</h1>
+      <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
+        <i class="bi bi-chevron-right"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation floating overflow-auto">
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">nbprocess</a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./read.html" class="sidebar-item-text sidebar-link">read</a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./maker.html" class="sidebar-item-text sidebar-link">maker</a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./process.html" class="sidebar-item-text sidebar-link">process</a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./export.html" class="sidebar-item-text sidebar-link">export</a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./doclinks.html" class="sidebar-item-text sidebar-link">doclinks</a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./sync.html" class="sidebar-item-text sidebar-link">sync</a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./merge.html" class="sidebar-item-text sidebar-link">merge</a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./showdoc.html" class="sidebar-item-text sidebar-link">showdoc</a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./processors.html" class="sidebar-item-text sidebar-link active">processors</a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./cli.html" class="sidebar-item-text sidebar-link">cli</a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./11_clean.html" class="sidebar-item-text sidebar-link">Clean</a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./test.html" class="sidebar-item-text sidebar-link">Test Notebooks</a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./migrate.html" class="sidebar-item-text sidebar-link">Migrate to nbprocess</a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./shortcuts.html" class="sidebar-item-text sidebar-link">shortcuts</a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./tutorial.html" class="sidebar-item-text sidebar-link">nbprocess tutorial</a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#helpers" id="toc-helpers" class="nav-link active" data-scroll-target="#helpers">Helpers</a></li>
+  <li><a href="#cell-processors" id="toc-cell-processors" class="nav-link" data-scroll-target="#cell-processors">Cell processors</a></li>
+  <li><a href="#notebook-preprocessors" id="toc-notebook-preprocessors" class="nav-link" data-scroll-target="#notebook-preprocessors">Notebook preprocessors</a></li>
+  <li><a href="#notebook-postprocessors" id="toc-notebook-postprocessors" class="nav-link" data-scroll-target="#notebook-postprocessors">Notebook postprocessors</a></li>
+  </ul>
+<div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/fastai/nbprocess/issues/new" class="toc-action">Report an issue</a></p></div></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title d-none d-lg-block">processors</h1>
+</div>
+
+<div>
+  <div class="description">
+    Some processors for NBProcessor
+  </div>
+</div>
+
+
+<div class="quarto-title-meta">
+
+    
+    
+  </div>
+  
+
+</header>
+
+<!-- WARNING: THIS FILE WAS AUTOGENERATED! DO NOT EDIT! -->
+<section id="helpers" class="level2">
+<h2 class="anchored" data-anchor-id="helpers">Helpers</h2>
+<p>On this page we’ll be using this private helper to process a notebook and return the results, to simplify testing:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> _run_procs(procs<span class="op">=</span><span class="va">None</span>, preprocs<span class="op">=</span><span class="va">None</span>, postprocs<span class="op">=</span><span class="va">None</span>, return_nb<span class="op">=</span><span class="va">False</span>, path<span class="op">=</span>_test_file):</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    nbp <span class="op">=</span> NBProcessor(path, procs, preprocs<span class="op">=</span>preprocs, postprocs<span class="op">=</span>postprocs)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>    nbp.process()</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> return_nb: <span class="cf">return</span> nbp.nb</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="st">'</span><span class="ch">\n</span><span class="st">'</span>.join([<span class="bu">str</span>(cell) <span class="cf">for</span> cell <span class="kw">in</span> nbp.nb.cells])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="cell-processors" class="level2">
+<h2 class="anchored" data-anchor-id="cell-processors">Cell processors</h2>
+<div class="cell" data-execution_count="1">
+<div class="cell-output cell-output-display" data-execution_count="1">
+<hr>
+<section id="add_links" class="level4">
+<h4 class="anchored" data-anchor-id="add_links">add_links</h4>
+<blockquote class="blockquote">
+<pre><code> add_links (cell)</code></pre>
+</blockquote>
+<p>Add links to markdown cells</p>
+</section>
+</div>
+</div>
+<div class="cell" data-execution_count="2">
+<div class="cell-output cell-output-display" data-execution_count="2">
+<hr>
+<section id="cell_lang" class="level4">
+<h4 class="anchored" data-anchor-id="cell_lang">cell_lang</h4>
+<blockquote class="blockquote">
+<pre><code> cell_lang (cell)</code></pre>
+</blockquote>
+</section>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>res <span class="op">=</span> _run_procs(add_links)</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="cf">assert</span> <span class="st">"[numpy.array](https://numpy.org/doc/stable/reference/generated/numpy.array.html#numpy.array)"</span> <span class="kw">in</span> res</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="cf">assert</span> <span class="st">"[ModuleMaker](https://nbprocess.fast.ai/maker#ModuleMaker) but not a link to `foobar`."</span> <span class="kw">in</span> res</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="cf">assert</span> <span class="st">"A link in a docstring: [ModuleMaker](https://nbprocess.fast.ai/maker#ModuleMaker)"</span> <span class="kw">in</span> res</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="cf">assert</span> <span class="st">"And not a link to &lt;code&gt;dict2nb&lt;/code&gt;."</span> <span class="kw">in</span> res</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Gets rid of colors that are streamed from standard out, which can interfere with static site generators:</p>
+<div class="cell" data-execution_count="3">
+<div class="cell-output cell-output-display" data-execution_count="3">
+<hr>
+<section id="strip_ansi" class="level4">
+<h4 class="anchored" data-anchor-id="strip_ansi">strip_ansi</h4>
+<blockquote class="blockquote">
+<pre><code> strip_ansi (cell)</code></pre>
+</blockquote>
+<p>Strip Ansi Characters.</p>
+</section>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>res <span class="op">=</span> _run_procs(strip_ansi)</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="cf">assert</span> <span class="kw">not</span> _re_ansi_escape.findall(res)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-execution_count="4">
+<div class="cell-output cell-output-display" data-execution_count="4">
+<hr>
+<section id="strip_hidden_metadata" class="level4">
+<h4 class="anchored" data-anchor-id="strip_hidden_metadata">strip_hidden_metadata</h4>
+<blockquote class="blockquote">
+<pre><code> strip_hidden_metadata (cell)</code></pre>
+</blockquote>
+<p>Strips “hidden” metadata property from code cells so it doesn’t interfere with docs rendering</p>
+</section>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="cf">assert</span> <span class="st">'</span><span class="ch">\'</span><span class="st">hidden</span><span class="ch">\'</span><span class="st">: True'</span> <span class="kw">in</span> _run_procs()</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="cf">assert</span> <span class="st">'</span><span class="ch">\'</span><span class="st">hidden</span><span class="ch">\'</span><span class="st">: True'</span> <span class="kw">not</span> <span class="kw">in</span> _run_procs(procs <span class="op">=</span> strip_hidden_metadata)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-execution_count="5">
+<div class="cell-output cell-output-display" data-execution_count="5">
+<hr>
+<section id="hide_" class="level4">
+<h4 class="anchored" data-anchor-id="hide_">hide_</h4>
+<blockquote class="blockquote">
+<pre><code> hide_ (nbp, cell)</code></pre>
+</blockquote>
+<p>Hide cell from output</p>
+</section>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>res <span class="op">=</span> _run_procs(hide_)</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="cf">assert</span> <span class="st">'you will not be able to see this cell at all either'</span> <span class="kw">not</span> <span class="kw">in</span> res</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-execution_count="6">
+<div class="cell-output cell-output-display" data-execution_count="6">
+<hr>
+<section id="hide_line" class="level4">
+<h4 class="anchored" data-anchor-id="hide_line">hide_line</h4>
+<blockquote class="blockquote">
+<pre><code> hide_line (cell)</code></pre>
+</blockquote>
+<p>Hide lines of code in code cells with the directive <code>hide_line</code> at the end of a line of code</p>
+</section>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>res <span class="op">=</span> _run_procs(hide_line)</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="cf">assert</span> <span class="vs">r"def show():\n    a = 2\n    b = 3"</span> <span class="kw">not</span> <span class="kw">in</span> res</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="cf">assert</span> <span class="vs">r"def show():\n    a = 2"</span>                <span class="kw">in</span> res</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-execution_count="7">
+<div class="cell-output cell-output-display" data-execution_count="7">
+<hr>
+<section id="filter_stream_" class="level4">
+<h4 class="anchored" data-anchor-id="filter_stream_">filter_stream_</h4>
+<blockquote class="blockquote">
+<pre><code> filter_stream_ (nbp, cell, *words)</code></pre>
+</blockquote>
+<p>Remove output lines containing any of <code>words</code> in <code>cell</code> stream output</p>
+</section>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>res <span class="op">=</span> _run_procs(filter_stream_)</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>exp<span class="op">=</span><span class="vs">r"'A line\n', 'Another line.\n'"</span></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="cf">assert</span> exp <span class="kw">in</span> res</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-execution_count="8">
+<div class="cell-output cell-output-display" data-execution_count="8">
+<hr>
+<section id="clean_magics" class="level4">
+<h4 class="anchored" data-anchor-id="clean_magics">clean_magics</h4>
+<blockquote class="blockquote">
+<pre><code> clean_magics (cell)</code></pre>
+</blockquote>
+<p>A preprocessor to remove cell magic commands</p>
+</section>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>res <span class="op">=</span> _run_procs(clean_magics)</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="cf">assert</span> <span class="st">"</span><span class="sc">%%</span><span class="st">"</span> <span class="kw">not</span> <span class="kw">in</span> res</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-execution_count="9">
+<div class="cell-output cell-output-display" data-execution_count="9">
+<hr>
+<section id="lang_identify" class="level4">
+<h4 class="anchored" data-anchor-id="lang_identify">lang_identify</h4>
+<blockquote class="blockquote">
+<pre><code> lang_identify (cell)</code></pre>
+</blockquote>
+<p>A preprocessor to identify bash/js/etc cells and mark them appropriately</p>
+</section>
+</div>
+</div>
+<p>When we issue a shell command in a notebook with <code>!</code>, we need to change the code-fence from <code>python</code> to <code>bash</code> and remove the <code>!</code>:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>res <span class="op">=</span> _run_procs(lang_identify)</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="cf">assert</span> <span class="st">"'language': 'bash'"</span> <span class="kw">in</span> res</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-execution_count="10">
+<div class="cell-output cell-output-display" data-execution_count="10">
+<hr>
+<section id="rm_header_dash" class="level4">
+<h4 class="anchored" data-anchor-id="rm_header_dash">rm_header_dash</h4>
+<blockquote class="blockquote">
+<pre><code> rm_header_dash (cell)</code></pre>
+</blockquote>
+<p>Remove headings that end with a dash -</p>
+</section>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>res <span class="op">=</span> _run_procs(rm_header_dash)</span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="cf">assert</span> <span class="st">'some words'</span> <span class="kw">in</span> res</span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a><span class="cf">assert</span> <span class="st">'A heading to Hide'</span> <span class="kw">not</span> <span class="kw">in</span> res</span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a><span class="cf">assert</span> <span class="st">'Yet another heading to hide'</span> <span class="kw">not</span> <span class="kw">in</span> res</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-execution_count="11">
+<div class="cell-output cell-output-display" data-execution_count="11">
+<hr>
+<section id="rm_export" class="level4">
+<h4 class="anchored" data-anchor-id="rm_export">rm_export</h4>
+<blockquote class="blockquote">
+<pre><code> rm_export (cell)</code></pre>
+</blockquote>
+<p>Remove cells that are exported or hidden</p>
+</section>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>res <span class="op">=</span> _run_procs(rm_export)</span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="cf">assert</span> <span class="st">'dontshow'</span> <span class="kw">not</span> <span class="kw">in</span> res</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-execution_count="12">
+<div class="cell-output cell-output-display" data-execution_count="12">
+<hr>
+<section id="clean_show_doc" class="level4">
+<h4 class="anchored" data-anchor-id="clean_show_doc">clean_show_doc</h4>
+<blockquote class="blockquote">
+<pre><code> clean_show_doc (cell)</code></pre>
+</blockquote>
+<p>Remove ShowDoc input cells</p>
+</section>
+</div>
+</div>
+<div class="cell" data-execution_count="13">
+<div class="cell-output cell-output-display" data-execution_count="13">
+<hr>
+<section id="exec_show_docs" class="level3">
+<h3 class="anchored" data-anchor-id="exec_show_docs">exec_show_docs</h3>
+<blockquote class="blockquote">
+<pre><code> exec_show_docs (nb)</code></pre>
+</blockquote>
+<p>Execute cells needed for <code>show_docs</code> output, including exported cells and imports</p>
+</section>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>res <span class="op">=</span> _run_procs(exec_show_docs)</span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a><span class="cf">assert</span> res</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="notebook-preprocessors" class="level2">
+<h2 class="anchored" data-anchor-id="notebook-preprocessors">Notebook preprocessors</h2>
+<div class="cell" data-execution_count="14">
+<div class="cell-output cell-output-display" data-execution_count="14">
+<hr>
+<section id="populate_language" class="level4">
+<h4 class="anchored" data-anchor-id="populate_language">populate_language</h4>
+<blockquote class="blockquote">
+<pre><code> populate_language (nb)</code></pre>
+</blockquote>
+<p>Insert cell language indicator based on notebook metadata. You should to use this before <code>lang_identify</code></p>
+</section>
+</div>
+</div>
+<div class="cell" data-execution_count="15">
+<div class="cell-output cell-output-display" data-execution_count="15">
+<hr>
+<section id="insert_warning" class="level4">
+<h4 class="anchored" data-anchor-id="insert_warning">insert_warning</h4>
+<blockquote class="blockquote">
+<pre><code> insert_warning (nb)</code></pre>
+</blockquote>
+<p>Insert Autogenerated Warning Into Notebook after the first cell.</p>
+</section>
+</div>
+</div>
+<p>This preprocessor inserts a warning in the markdown destination that the file is autogenerated. This warning is inserted in the second cell so we do not interfere with front matter.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>res <span class="op">=</span> _run_procs(preprocs<span class="op">=</span>[insert_warning])</span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a><span class="cf">assert</span> <span class="st">"&lt;!-- WARNING: THIS FILE WAS AUTOGENERATED!"</span> <span class="kw">in</span> res</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>L(<span class="st">'foo'</span>, <span class="va">None</span>, <span class="st">'a'</span>).<span class="bu">filter</span>(<span class="kw">lambda</span> x:x <span class="op">==</span> <span class="dv">1</span>)</span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>_tstre <span class="op">=</span> re.<span class="bu">compile</span>(<span class="st">'a'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-execution_count="16">
+<div class="cell-output cell-output-display" data-execution_count="16">
+<hr>
+<section id="add_show_docs" class="level4">
+<h4 class="anchored" data-anchor-id="add_show_docs">add_show_docs</h4>
+<blockquote class="blockquote">
+<pre><code> add_show_docs (nb)</code></pre>
+</blockquote>
+<p>Add show_doc cells after exported cells, unless they are already documented</p>
+</section>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>res <span class="op">=</span> _run_procs(preprocs<span class="op">=</span>[populate_language, add_show_docs])</span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a><span class="cf">assert</span> <span class="st">"show_doc(some_func)'"</span> <span class="kw">in</span> res</span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a><span class="cf">assert</span> <span class="st">"show_doc(and_another)'"</span> <span class="kw">in</span> res</span>
+<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a><span class="cf">assert</span> <span class="st">"show_doc(another_func)'"</span> <span class="kw">not</span> <span class="kw">in</span> res</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="notebook-postprocessors" class="level2">
+<h2 class="anchored" data-anchor-id="notebook-postprocessors">Notebook postprocessors</h2>
+<div class="cell" data-execution_count="17">
+<div class="cell-output cell-output-display" data-execution_count="17">
+<hr>
+<section id="is_frontmatter" class="level4">
+<h4 class="anchored" data-anchor-id="is_frontmatter">is_frontmatter</h4>
+<blockquote class="blockquote">
+<pre><code> is_frontmatter (nb)</code></pre>
+</blockquote>
+</section>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>_testnb <span class="op">=</span> read_nb(<span class="st">'../tests/docs_test.ipynb'</span>)</span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>test_eq(_default_exp(_testnb), <span class="st">'foobar'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-execution_count="18">
+<div class="cell-output cell-output-display" data-execution_count="18">
+<hr>
+<section id="nb_fmdict" class="level4">
+<h4 class="anchored" data-anchor-id="nb_fmdict">nb_fmdict</h4>
+<blockquote class="blockquote">
+<pre><code> nb_fmdict (nb, remove=True)</code></pre>
+</blockquote>
+<p>Infer the front matter from a notebook’s markdown formatting</p>
+</section>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>_testnb <span class="op">=</span> read_nb(<span class="st">'../tests/docs_test.ipynb'</span>)</span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>_res <span class="op">=</span> nb_fmdict(_testnb)</span>
+<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a>test_eq(_res, <span class="bu">dict</span>(key1<span class="op">=</span><span class="st">' value1'</span>, key2<span class="op">=</span><span class="st">' value2'</span>, categories<span class="op">=</span><span class="st">' [c1, c2]'</span>, title<span class="op">=</span><span class="st">'a title'</span>, description<span class="op">=</span><span class="st">'A description'</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-execution_count="19">
+<div class="cell-output cell-output-display" data-execution_count="19">
+<hr>
+<section id="construct_fm" class="level4">
+<h4 class="anchored" data-anchor-id="construct_fm">construct_fm</h4>
+<blockquote class="blockquote">
+<pre><code> construct_fm (fmdict:dict,
+               keys=['title','description','author','image','categories','
+               output-file','aliases'])</code></pre>
+</blockquote>
+<p>construct front matter from a dictionary, but only for <code>keys</code></p>
+</section>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>_testdict <span class="op">=</span> nb_fmdict(read_nb(<span class="st">'../tests/docs_test.ipynb'</span>))</span>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>_res <span class="op">=</span> construct_fm(_testdict)</span>
+<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a>test_eq(<span class="bu">len</span>(_res.splitlines()), <span class="dv">5</span>)</span>
+<span id="cb37-4"><a href="#cb37-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(_res)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>---
+title: a title
+description: A description
+categories:  [c1, c2]
+---</code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="20">
+<div class="cell-output cell-output-display" data-execution_count="20">
+<hr>
+<section id="insert_frontmatter" class="level4">
+<h4 class="anchored" data-anchor-id="insert_frontmatter">insert_frontmatter</h4>
+<blockquote class="blockquote">
+<pre><code> insert_frontmatter (nb, fm_dict:dict, filter_keys:list=['title','descript
+                     ion','author','image','categories','output-
+                     file','aliases'])</code></pre>
+</blockquote>
+<p>Add frontmatter into notebook based on <code>filter_keys</code> that exist in <code>fmdict</code>.</p>
+</section>
+</div>
+</div>
+<div class="cell" data-execution_count="21">
+<div class="cell-output cell-output-display" data-execution_count="21">
+<hr>
+<section id="infer_frontmatter" class="level4">
+<h4 class="anchored" data-anchor-id="infer_frontmatter">infer_frontmatter</h4>
+<blockquote class="blockquote">
+<pre><code> infer_frontmatter (nb)</code></pre>
+</blockquote>
+<p>Insert front matter if it doesn’t exist automatically from nbdev styled markdown.</p>
+</section>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a>_raw_res <span class="op">=</span> _run_procs()</span>
+<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a>_res <span class="op">=</span> _run_procs(postprocs<span class="op">=</span>infer_frontmatter)</span>
+<span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a><span class="cf">assert</span> <span class="st">'# a title'</span> <span class="kw">in</span> _raw_res <span class="kw">and</span> <span class="st">'# a title'</span> <span class="kw">not</span> <span class="kw">in</span> _res</span>
+<span id="cb41-4"><a href="#cb41-4" aria-hidden="true" tabindex="-1"></a><span class="cf">assert</span> <span class="vs">r'description: A description\n'</span> <span class="kw">in</span> _res</span>
+<span id="cb41-5"><a href="#cb41-5" aria-hidden="true" tabindex="-1"></a><span class="cf">assert</span> <span class="vs">r'categories:  [c1, c2]\n'</span> <span class="kw">in</span> _res</span>
+<span id="cb41-6"><a href="#cb41-6" aria-hidden="true" tabindex="-1"></a><span class="cf">assert</span> <span class="vs">r'output-file: foobar\n---'</span> <span class="kw">in</span> _res</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    setTimeout(function() {
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      let href = ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const cites = ref.parentNode.getAttribute('data-cites').split(' ');
+    tippyHover(ref, function() {
+      var popup = window.document.createElement('div');
+      cites.forEach(function(cite) {
+        var citeDiv = window.document.createElement('div');
+        citeDiv.classList.add('hanging-indent');
+        citeDiv.classList.add('csl-entry');
+        var biblioDiv = window.document.getElementById('ref-' + cite);
+        if (biblioDiv) {
+          citeDiv.innerHTML = biblioDiv.innerHTML;
+        }
+        popup.appendChild(citeDiv);
+      });
+      return popup.innerHTML;
+    });
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>

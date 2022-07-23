@@ -1,0 +1,928 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.0.36">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="description" content="Display symbol documentation in notebook and website">
+
+<title>nbprocess - showdoc</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+span.underline{text-decoration: underline;}
+div.column{display: inline-block; vertical-align: top; width: 50%;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" integrity="sha512-c3Nl8+7g4LMSTdrm621y7kf9v3SDPnhxLNhcjFJbKECVnmZHTdo+IRO05sNLTH/D3vA6u1X32ehoLC7WFVdheg==" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script>
+<script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
+
+
+<link rel="stylesheet" href="styles.css">
+<meta property="og:title" content="nbprocess - showdoc">
+<meta property="og:description" content="Display symbol documentation in notebook and website">
+<meta property="og:site-name" content="nbprocess">
+<meta name="twitter:title" content="nbprocess - showdoc">
+<meta name="twitter:description" content="Display symbol documentation in notebook and website">
+<meta name="twitter:card" content="summary">
+</head>
+
+<body class="nav-sidebar floating nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <a class="navbar-brand" href="./index.html">
+    <span class="navbar-title">nbprocess</span>
+  </a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/fastai/nbprocess"><i class="bi bi-github" role="img">
+</i> 
+ </a>
+  </li>  
+</ul>
+              <div class="quarto-toggle-container">
+                  <a href="" class="quarto-reader-toggle nav-link" onclick="window.quartoToggleReader(); return false;" title="Toggle reader mode">
+  <div class="quarto-reader-toggle-btn">
+  <i class="bi"></i>
+  </div>
+</a>
+              </div>
+              <div id="quarto-search" class="" title="Search"></div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+    <div class="container-fluid d-flex justify-content-between">
+      <h1 class="quarto-secondary-nav-title">showdoc</h1>
+      <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
+        <i class="bi bi-chevron-right"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation floating overflow-auto">
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">nbprocess</a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./read.html" class="sidebar-item-text sidebar-link">read</a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./maker.html" class="sidebar-item-text sidebar-link">maker</a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./process.html" class="sidebar-item-text sidebar-link">process</a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./export.html" class="sidebar-item-text sidebar-link">export</a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./doclinks.html" class="sidebar-item-text sidebar-link">doclinks</a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./sync.html" class="sidebar-item-text sidebar-link">sync</a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./merge.html" class="sidebar-item-text sidebar-link">merge</a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./showdoc.html" class="sidebar-item-text sidebar-link active">showdoc</a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./processors.html" class="sidebar-item-text sidebar-link">processors</a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./cli.html" class="sidebar-item-text sidebar-link">cli</a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./11_clean.html" class="sidebar-item-text sidebar-link">Clean</a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./test.html" class="sidebar-item-text sidebar-link">Test Notebooks</a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./migrate.html" class="sidebar-item-text sidebar-link">Migrate to nbprocess</a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./shortcuts.html" class="sidebar-item-text sidebar-link">shortcuts</a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./tutorial.html" class="sidebar-item-text sidebar-link">nbprocess tutorial</a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#rendering-docment-tables" id="toc-rendering-docment-tables" class="nav-link active" data-scroll-target="#rendering-docment-tables">Rendering docment Tables</a></li>
+  <li><a href="#show-complete-documentation-for-an-object" id="toc-show-complete-documentation-for-an-object" class="nav-link" data-scroll-target="#show-complete-documentation-for-an-object">Show Complete Documentation For An Object</a>
+  <ul class="collapse">
+  <li><a href="#numpy-docstrings" id="toc-numpy-docstrings" class="nav-link" data-scroll-target="#numpy-docstrings">Numpy Docstrings</a></li>
+  </ul></li>
+  <li><a href="#show_doc-on-classes" id="toc-show_doc-on-classes" class="nav-link" data-scroll-target="#show_doc-on-classes"><span>show_doc</span> on Classes</a></li>
+  </ul>
+<div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/fastai/nbprocess/issues/new" class="toc-action">Report an issue</a></p></div></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title d-none d-lg-block">showdoc</h1>
+</div>
+
+<div>
+  <div class="description">
+    Display symbol documentation in notebook and website
+  </div>
+</div>
+
+
+<div class="quarto-title-meta">
+
+    
+    
+  </div>
+  
+
+</header>
+
+<!-- WARNING: THIS FILE WAS AUTOGENERATED! DO NOT EDIT! -->
+<section id="rendering-docment-tables" class="level2">
+<h2 class="anchored" data-anchor-id="rendering-docment-tables">Rendering docment Tables</h2>
+<p>Render nicely formatted tables that shows <code>docments</code> for any function or method.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>test_eq(_maybe_nm(<span class="bu">list</span>), <span class="st">'list'</span>)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>test_eq(_maybe_nm(<span class="st">'fastai'</span>), <span class="st">'fastai'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-execution_count="1">
+<div class="cell-output cell-output-display" data-execution_count="1">
+<hr>
+<section id="docmenttbl" class="level3">
+<h3 class="anchored" data-anchor-id="docmenttbl">DocmentTbl</h3>
+<blockquote class="blockquote">
+<pre><code> DocmentTbl (obj, verbose=True, returns=True)</code></pre>
+</blockquote>
+<p>Compute the docment table string</p>
+</section>
+</div>
+</div>
+<p><a href="https://nbprocess.fast.ai/showdoc#DocmentTbl">DocmentTbl</a> can render a markdown table showing <code>docments</code> if appropriate. This is an example of how a <code>docments</code> table will render for a function:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> _f(a,      <span class="co"># description of param a </span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>       b<span class="op">=</span><span class="va">True</span>, <span class="co"># description of param b</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>       c:<span class="bu">str</span><span class="op">=</span><span class="va">None</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>       ) <span class="op">-&gt;</span> <span class="bu">int</span>: ...</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>_dm <span class="op">=</span> DocmentTbl(_f)</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>_dm</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<table class="table table-sm table-striped">
+<thead>
+<tr class="header">
+<th></th>
+<th><strong>Type</strong></th>
+<th><strong>Default</strong></th>
+<th><strong>Details</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>a</td>
+<td></td>
+<td></td>
+<td>description of param a</td>
+</tr>
+<tr class="even">
+<td>b</td>
+<td>bool</td>
+<td>True</td>
+<td>description of param b</td>
+</tr>
+<tr class="odd">
+<td>c</td>
+<td>str</td>
+<td>None</td>
+<td></td>
+</tr>
+<tr class="even">
+<td><strong>Returns</strong></td>
+<td><strong>int</strong></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p>If one column in the table has no information, for example because there are no default values, that column will not be shown. In the below example, the <strong>Default</strong> column, will not be shown. Additionally, if the return of the function is not annotated the <strong>Returns</strong> row will not be rendered:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> _f(a, </span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>        b, <span class="co">#param b</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>        c  <span class="co">#param c</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>       ): ...</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>_dm2 <span class="op">=</span> DocmentTbl(_f)</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>_dm2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<table class="table table-sm table-striped">
+<thead>
+<tr class="header">
+<th></th>
+<th><strong>Details</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>a</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>b</td>
+<td>param b</td>
+</tr>
+<tr class="odd">
+<td>c</td>
+<td>param c</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p><a href="https://nbprocess.fast.ai/showdoc#DocmentTbl">DocmentTbl</a> also works on classes. By default, the <code>__init__</code> will be rendered:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> _Test:</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, </span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>                 a,      <span class="co"># description of param a </span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>                 b<span class="op">=</span><span class="va">True</span>, <span class="co"># description of param b</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>                 c:<span class="bu">str</span><span class="op">=</span><span class="va">None</span>):</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>        ...</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> foo(<span class="va">self</span>, </span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>            c:<span class="bu">int</span>,      <span class="co"># description of param c</span></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>            d<span class="op">=</span><span class="va">True</span>, <span class="co"># description of param d</span></span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>           ):</span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>        ...</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>DocmentTbl(_Test)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<table class="table table-sm table-striped">
+<thead>
+<tr class="header">
+<th></th>
+<th><strong>Type</strong></th>
+<th><strong>Default</strong></th>
+<th><strong>Details</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>a</td>
+<td></td>
+<td></td>
+<td>description of param a</td>
+</tr>
+<tr class="even">
+<td>b</td>
+<td>bool</td>
+<td>True</td>
+<td>description of param b</td>
+</tr>
+<tr class="odd">
+<td>c</td>
+<td>str</td>
+<td>None</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p>You can also pass a method to be rendered as well:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>DocmentTbl(_Test.foo)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<table class="table table-sm table-striped">
+<thead>
+<tr class="header">
+<th></th>
+<th><strong>Type</strong></th>
+<th><strong>Default</strong></th>
+<th><strong>Details</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>c</td>
+<td>int</td>
+<td></td>
+<td>description of param c</td>
+</tr>
+<tr class="even">
+<td>d</td>
+<td>bool</td>
+<td>True</td>
+<td>description of param d</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</section>
+<section id="show-complete-documentation-for-an-object" class="level2">
+<h2 class="anchored" data-anchor-id="show-complete-documentation-for-an-object">Show Complete Documentation For An Object</h2>
+<p>Render the signature as well as the <code>docments</code> to show complete documentation for an object.</p>
+<div class="cell" data-execution_count="2">
+<div class="cell-output cell-output-display" data-execution_count="2">
+<hr>
+<section id="showdocrenderer" class="level3">
+<h3 class="anchored" data-anchor-id="showdocrenderer">ShowDocRenderer</h3>
+<blockquote class="blockquote">
+<pre><code> ShowDocRenderer (sym, disp:bool=True)</code></pre>
+</blockquote>
+<p>Show documentation for <code>sym</code></p>
+</section>
+</div>
+</div>
+<div class="cell" data-execution_count="3">
+<div class="cell-output cell-output-display" data-execution_count="3">
+<hr>
+<section id="basicmarkdownrenderer" class="level3">
+<h3 class="anchored" data-anchor-id="basicmarkdownrenderer">BasicMarkdownRenderer</h3>
+<blockquote class="blockquote">
+<pre><code> BasicMarkdownRenderer (sym, disp:bool=True)</code></pre>
+</blockquote>
+<p>Show documentation for <code>sym</code></p>
+</section>
+</div>
+</div>
+<div class="cell" data-execution_count="4">
+<div class="cell-output cell-output-display" data-execution_count="4">
+<hr>
+<section id="show_doc" class="level4">
+<h4 class="anchored" data-anchor-id="show_doc">show_doc</h4>
+<blockquote class="blockquote">
+<pre><code> show_doc (sym, disp=True, renderer=None)</code></pre>
+</blockquote>
+</section>
+</div>
+</div>
+<p>You can use <a href="https://nbprocess.fast.ai/showdoc#show_doc">show_doc</a> to document apis of functions, classes or methods:</p>
+<div class="cell" data-execution_count="5">
+<div class="cell-output cell-output-display" data-execution_count="5">
+<hr>
+<section id="f" class="level4">
+<h4 class="anchored" data-anchor-id="f">f</h4>
+<blockquote class="blockquote">
+<pre><code> f (x:int=1)</code></pre>
+</blockquote>
+<p>func docstring</p>
+</section>
+</div>
+</div>
+<div class="callout-warning callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Warning
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>If you are using a version of python that is older than 3.10, type hints might be rendered as strings when running <a href="https://nbprocess.fast.ai/showdoc#show_doc">show_doc</a>. We recommend upgrading to python 3.10 locally if possible so you can preview docs without this artifact. We have set the version of python to be 3.10 <code>.github/workflows/deploy.yaml</code> for this reason as well.</p>
+</div>
+</div>
+<div class="cell" data-execution_count="6">
+<div class="cell-output cell-output-display" data-execution_count="6">
+<hr>
+<section id="f-1" class="level4">
+<h4 class="anchored" data-anchor-id="f-1">f</h4>
+<blockquote class="blockquote">
+<pre><code> f (x:int=1)</code></pre>
+</blockquote>
+<p>func docstring</p>
+<table class="table table-sm table-striped">
+<colgroup>
+<col style="width: 6%">
+<col style="width: 25%">
+<col style="width: 34%">
+<col style="width: 34%">
+</colgroup>
+<thead>
+<tr class="header">
+<th></th>
+<th><strong>Type</strong></th>
+<th><strong>Default</strong></th>
+<th><strong>Details</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>x</td>
+<td>int</td>
+<td>1</td>
+<td>the parameter x</td>
+</tr>
+<tr class="even">
+<td><strong>Returns</strong></td>
+<td><strong>None</strong></td>
+<td></td>
+<td><strong>this function doesn’t return anything</strong></td>
+</tr>
+</tbody>
+</table>
+</section>
+</div>
+</div>
+<section id="numpy-docstrings" class="level3">
+<h3 class="anchored" data-anchor-id="numpy-docstrings">Numpy Docstrings</h3>
+<p>if you have <a href="https://numpydoc.readthedocs.io/en/latest/format.html">numpy docstrings</a> instead of <code>docments</code>, <a href="https://nbprocess.fast.ai/showdoc#show_doc">show_doc</a> will attempt to parse and render those just like <code>docments</code>:</p>
+<div class="cell" data-execution_count="7">
+<div class="cell-output cell-output-display" data-execution_count="7">
+<hr>
+<section id="f-2" class="level4">
+<h4 class="anchored" data-anchor-id="f-2">f</h4>
+<blockquote class="blockquote">
+<pre><code> f (x=1)</code></pre>
+</blockquote>
+<p>func docstring in the numpy style.</p>
+<table class="table table-sm table-striped">
+<colgroup>
+<col style="width: 6%">
+<col style="width: 25%">
+<col style="width: 34%">
+<col style="width: 34%">
+</colgroup>
+<thead>
+<tr class="header">
+<th></th>
+<th><strong>Type</strong></th>
+<th><strong>Default</strong></th>
+<th><strong>Details</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>x</td>
+<td>int</td>
+<td>1</td>
+<td>the parameter x</td>
+</tr>
+<tr class="even">
+<td><strong>Returns</strong></td>
+<td><strong>None</strong></td>
+<td></td>
+<td><strong>this function doesn’t return anything</strong></td>
+</tr>
+</tbody>
+</table>
+</section>
+</div>
+</div>
+<div class="callout-warning callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Warning
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Numpy docstring formatting is very strict. If your docstrings do not strictly adhere to the numpy format, it will not be parsed properly and information about parameters and return values may not properly be rendered in the table below the signature. Where possible, we recommend using <code>docments</code> to annonate your function instead.</p>
+</div>
+</div>
+</section>
+</section>
+<section id="show_doc-on-classes" class="level2">
+<h2 class="anchored" data-anchor-id="show_doc-on-classes"><a href="https://nbprocess.fast.ai/showdoc#show_doc">show_doc</a> on Classes</h2>
+<p>show_doc works on Classes, too including when you use <code>@patch</code>:</p>
+<div class="cell" data-execution_count="8">
+<div class="cell-output cell-output-display" data-execution_count="8">
+<hr>
+<section id="foo" class="level3">
+<h3 class="anchored" data-anchor-id="foo">Foo</h3>
+<blockquote class="blockquote">
+<pre><code> Foo (d:str, e:int)</code></pre>
+</blockquote>
+<p>This is the docstring for the <strong>init</strong> method</p>
+</section>
+</div>
+</div>
+<p>You can define methods for the class <code>Foo</code> with <code>@patch</code> which is convenient in allowing you to break up code for documentation in notebooks:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="at">@patch</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> a_method(<span class="va">self</span>:Foo, </span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>             a:<span class="bu">list</span>, <span class="co"># param a</span></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>             b:<span class="bu">dict</span>,c):</span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>        <span class="co">"This is a method"</span></span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>        ...</span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>_res <span class="op">=</span> show_doc(Foo.a_method)</span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a>_res</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<hr>
+<section id="foo.a_method" class="level4">
+<h4 class="anchored" data-anchor-id="foo.a_method">Foo.a_method</h4>
+<blockquote class="blockquote">
+<pre><code> Foo.a_method (a:list, b:dict, c)</code></pre>
+</blockquote>
+<p>This is a method</p>
+<table class="table table-sm table-striped">
+<thead>
+<tr class="header">
+<th></th>
+<th><strong>Type</strong></th>
+<th><strong>Details</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>a</td>
+<td>list</td>
+<td>param a</td>
+</tr>
+<tr class="even">
+<td>b</td>
+<td>dict</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>c</td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</section>
+</div>
+</div>
+<p>Class properties also work with showdoc:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>_res <span class="op">=</span> show_doc(Foo.some_prop)</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>_res</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<hr>
+<section id="foo.some_prop" class="level4">
+<h4 class="anchored" data-anchor-id="foo.some_prop">Foo.some_prop</h4>
+<p>This is a class property.</p>
+</section>
+</div>
+</div>
+<div class="cell" data-execution_count="9">
+<div class="cell-output cell-output-display" data-execution_count="9">
+<hr>
+<section id="basichtmlrenderer" class="level3">
+<h3 class="anchored" data-anchor-id="basichtmlrenderer">BasicHtmlRenderer</h3>
+<blockquote class="blockquote">
+<pre><code> BasicHtmlRenderer (sym, disp:bool=True)</code></pre>
+</blockquote>
+<p>Show documentation for <code>sym</code></p>
+</section>
+</div>
+</div>
+<div class="cell" data-execution_count="10">
+<div class="cell-output cell-output-display" data-execution_count="10">
+<hr>
+<h3 class="anchored">F</h3>
+<blockquote class="blockquote"><code>F(x: int = 1)</code></blockquote><p>class docstring</p>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>_res <span class="op">=</span> show_doc(F.class_method)</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>_res</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<hr>
+<section id="f.class_method" class="level3">
+<h3 class="anchored" data-anchor-id="f.class_method">F.class_method</h3>
+<blockquote class="blockquote">
+<pre><code> F.class_method (foo:str, bar:int)</code></pre>
+</blockquote>
+<p>This is a class method.</p>
+<table class="table table-sm table-striped">
+<thead>
+<tr class="header">
+<th></th>
+<th><strong>Type</strong></th>
+<th><strong>Details</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>foo</td>
+<td>str</td>
+<td>docment for parameter foo</td>
+</tr>
+<tr class="even">
+<td>bar</td>
+<td>int</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</section>
+</div>
+</div>
+<div class="cell" data-execution_count="11">
+<div class="cell-output cell-output-display" data-execution_count="11">
+<hr>
+<section id="f.regular_method" class="level4">
+<h4 class="anchored" data-anchor-id="f.regular_method">F.regular_method</h4>
+<blockquote class="blockquote">
+<pre><code> F.regular_method (baz:bool=True)</code></pre>
+</blockquote>
+<p>This is a regular method</p>
+<table class="table table-sm table-striped">
+<thead>
+<tr class="header">
+<th></th>
+<th><strong>Type</strong></th>
+<th><strong>Default</strong></th>
+<th><strong>Details</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>baz</td>
+<td>bool</td>
+<td>True</td>
+<td>docment for parameter baz</td>
+</tr>
+</tbody>
+</table>
+</section>
+</div>
+</div>
+<div class="cell" data-execution_count="12">
+<div class="cell-output cell-output-display" data-execution_count="12">
+<hr>
+<section id="showdoc_nm" class="level4">
+<h4 class="anchored" data-anchor-id="showdoc_nm">showdoc_nm</h4>
+<blockquote class="blockquote">
+<pre><code> showdoc_nm (tree)</code></pre>
+</blockquote>
+<p>Get the fully qualified name for showdoc.</p>
+</section>
+</div>
+</div>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    setTimeout(function() {
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      let href = ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const cites = ref.parentNode.getAttribute('data-cites').split(' ');
+    tippyHover(ref, function() {
+      var popup = window.document.createElement('div');
+      cites.forEach(function(cite) {
+        var citeDiv = window.document.createElement('div');
+        citeDiv.classList.add('hanging-indent');
+        citeDiv.classList.add('csl-entry');
+        var biblioDiv = window.document.getElementById('ref-' + cite);
+        if (biblioDiv) {
+          citeDiv.innerHTML = biblioDiv.innerHTML;
+        }
+        popup.appendChild(citeDiv);
+      });
+      return popup.innerHTML;
+    });
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>
